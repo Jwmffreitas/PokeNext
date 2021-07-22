@@ -2,27 +2,12 @@ import React, { useState } from 'react';
 import Head from 'next/head'
 import { useEffect } from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 
 
-import getData from './api/pokemon'
+import { getData } from './api/pokemon'
 
 export default function Home() {
-
-  const [pokemonData, setPokemonData] = useState([])
-
-  const callData = async () => {
-    let result = await getData()
-    setPokemonData(result.results)
-  }
-
-  useEffect(() => {
-    callData()
-  }, [])
-
-  useEffect(() => {
-    console.log(pokemonData)
-  }, [pokemonData])
-
   const Section = styled.section`
     max-width: 36rem;
     padding: 0 1rem;
@@ -66,6 +51,21 @@ export default function Home() {
     color: white;
   `
 
+  const [pokemonData, setPokemonData] = useState([])
+
+  const callData = async () => {
+    let result = await getData()
+    setPokemonData(result.results)
+  }
+
+  useEffect(() => {
+    callData()
+  }, [])
+
+  useEffect(() => {
+    console.log(pokemonData)
+  }, [pokemonData])
+
   return (
     <>
       <Head>
@@ -78,9 +78,13 @@ export default function Home() {
           <Title>Lista de Pokemons</Title>
           <List>
             {pokemonData.map((pokemon: any) => (
-            <ListItem>
-              <PokemonName>{pokemon.name}</PokemonName>
-            </ListItem>
+              <Link href={`./${pokemon.name}`}>
+                  <a>
+                    <ListItem>
+                      <PokemonName>{pokemon.name}</PokemonName>
+                    </ListItem>
+                  </a>
+              </Link>
             ))}
           </List>
       </Section>
