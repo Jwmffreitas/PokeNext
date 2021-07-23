@@ -5,7 +5,7 @@ export async function getData() {
   return res.json()
 }
 
-export async function getPokemonData(name) {
+export async function getPokemonData(name: string) {
   const req = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
   let res = await req
 

@@ -29,12 +29,13 @@ function pokemonPage({ pokemonData, pokemonLocation }) {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.8rem;
-    color: black;
+    color: white;
     `
 
     const LocationList = styled.ul`
     list-style: none;
     padding: 0px;
+    color: white;
     `
 
     return (
@@ -43,26 +44,26 @@ function pokemonPage({ pokemonData, pokemonLocation }) {
             <title>{pokemonData.name}</title>
         </Head>
 
-        <Section>
-            <PokemonImage src={pokemonData.sprites.other.dream_world.front_default}/>
-            <div>
-                <PokemonName>{pokemonData.name}</PokemonName>
-                <p>Types:</p>
-                <ul>
-                    {pokemonData.types.map((types: object) => (
-                        <li>{types.type.name}</li>
-                    ))}
-                </ul>
-            </div>
-        </Section>
-        <Section style={{flexDirection: 'column', textAlign: 'center'}}>
-            <Locations>Encounters</Locations>
-            <LocationList>
-                {pokemonLocation.length != 0 ? pokemonLocation.map((location: object) => (
-                            <li>{location.location_area.name}</li>
-                )) : "No locations"} 
-            </LocationList>
-        </Section>
+            <Section>
+                <PokemonImage src={pokemonData.sprites.other.dream_world.front_default}/>
+                <div>
+                    <PokemonName>{pokemonData.name}</PokemonName>
+                    <p>Types:</p>
+                    <ul>
+                        {pokemonData.types.map((types: object) => (
+                            <li>{types.type.name}</li>
+                        ))}
+                    </ul>
+                </div>
+            </Section>
+            <Section style={{flexDirection: 'column', textAlign: 'center', backgroundColor: '#702E00', borderRadius: '20px', boxShadow: 'gray 0px 0px 10px'}}>
+                <Locations>Locations:</Locations>
+                <LocationList>
+                    {pokemonLocation.length != 0 ? pokemonLocation.map((location: object) => (
+                                <li>{location.location_area.name}</li>
+                    )) : "No locations"} 
+                </LocationList>
+            </Section>
         </>
     )
 }

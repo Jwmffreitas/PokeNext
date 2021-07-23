@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Head from 'next/head'
-import { useEffect } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 
@@ -17,14 +16,14 @@ export async function getStaticProps() {
 }
 
 
-export default function Home(pokemonData) {
+export default function Home(pokemonData: object) {
 
   const pokemonList = pokemonData.pokemonData.results
 
   const Section = styled.section`
     max-width: 900px;
     padding: 0 1rem;
-    margin: 3rem auto 6rem;
+    margin: 1rem auto 6rem;
   `
 
   const Title = styled.h1`
@@ -51,6 +50,10 @@ export default function Home(pokemonData) {
     margin: 10px;
     width: 211px;
     text-align: center;
+    transition: 500ms;
+    &:hover {
+      background-color: #99E5F0;
+    }
   `
 
   const PokemonImage = styled.img`
@@ -72,20 +75,24 @@ export default function Home(pokemonData) {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <Section>
-          <Title>1° GEN POKEDEX</Title>
-          <List>
-            {pokemonList.map((pokemon: any) => (
-              <Link href={`./${pokemon.name}`}>
-                  <a>
-                    <ListItem>
-                      <PokemonName>{`${((pokemon.url).slice(34)).replace('/', '')}. ${pokemon.name}`}</PokemonName>
-                    </ListItem>
-                  </a>
-              </Link>
-            ))}
-          </List>
-      </Section>
+      <main style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+
+        <img src="/pokemon.png" style={{width: '400px', margin: '0 auto'}} />
+        <Section>
+            <Title>1° GEN POKEDEX</Title>
+            <List>
+              {pokemonList.map((pokemon: any) => (
+                <Link href={`./${pokemon.name}`}>
+                    <a>
+                      <ListItem>
+                        <PokemonName>{`${((pokemon.url).slice(34)).replace('/', '')}. ${pokemon.name}`}</PokemonName>
+                      </ListItem>
+                    </a>
+                </Link>
+              ))}
+            </List>
+          </Section>
+      </main>
     </>
   )
 }
