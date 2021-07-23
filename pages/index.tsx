@@ -56,10 +56,6 @@ export default function Home(pokemonData: object) {
     }
   `
 
-  const PokemonImage = styled.img`
-    width: 200px
-  `
-
   const PokemonName = styled.p`
     text-transform: uppercase;
     font-weight: bold;
