@@ -11,6 +11,6 @@ export async function getPokemonData(name) {
 
   if(!data || data == undefined || data == null) return {notFound: true}
   // Combine the data with the id
-  
+
   return data.json()
 }
