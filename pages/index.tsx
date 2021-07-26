@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'next/link'
+import {Section, Title, List, ListItem} from '../styles/styles'
 
 
 import { getData } from './api/pokemon'
@@ -24,36 +25,6 @@ export default function Home(pokemonData: object) {
     max-width: 900px;
     padding: 0 1rem;
     margin: 1rem auto 6rem;
-  `
-
-  const Title = styled.h1`
-    font-size: 3rem;
-    line-height: 1.4;
-    margin: 1rem 0;
-    font-family: "Rubik", sans-serif;
-    text-align: center;
-  `
-
-  const List = styled.ol`
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-  `
-
-  const ListItem = styled.li`
-    background-color: white;
-    padding: 5px;
-    box-shadow: gray 0px 0px 5px;
-    border-radius: 10px;
-    margin: 10px;
-    width: 211px;
-    text-align: center;
-    transition: 500ms;
-    &:hover {
-      background-color: #99E5F0;
-    }
   `
 
   const PokemonName = styled.p`

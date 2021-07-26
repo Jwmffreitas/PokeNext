@@ -1,42 +1,31 @@
 import { getPokemonData, getPokemonLocation } from './api/pokemon'
 import Head from 'next/head'
-import styled from 'styled-components'
+import {Section, PokemonImage, PokemonName, PokemonType, Locations, LocationList} from '../styles/styles'
 
 function pokemonPage({ pokemonData, pokemonLocation }) {
     console.log(pokemonData)
     console.log(pokemonLocation)
 
-    const Section = styled.section`
-    max-width: 40rem;
-    padding: 0 1rem;
-    margin: 3rem auto 3rem;
-    display: flex;
-    justify-content: space-evenly;
-  `
-
-    const PokemonImage = styled.img`
-    height: 280px
-    `
-
-    const PokemonName = styled.h1`
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: black;
-    `
-
-    const Locations = styled.h2`
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: white;
-    `
-
-    const LocationList = styled.ul`
-    list-style: none;
-    padding: 0px;
-    color: white;
-    `
+    const bgRelation = {
+        grass: 'forestgreen',
+        fire: 'red',
+        water: 'dodgerblue',
+        bug: 'yellowgreen',
+        flying: 'cornflowerblue',
+        poison: 'purple',
+        normal: 'gray',
+        electric: 'yellow',
+        ground:  'burlywood',
+        fairy: 'pink',
+        fighting: 'darkred',
+        psychic: 'violet',
+        rock: 'brown',
+        steel: 'slategray',
+        ice: 'lightskyblue',
+        ghost: 'mediumorchid',
+        dragon: 'blue',
+        dark: 'darkslategray',
+    }
 
     return (
         <>
@@ -51,7 +40,7 @@ function pokemonPage({ pokemonData, pokemonLocation }) {
                     <p>Types:</p>
                     <ul>
                         {pokemonData.types.map((types: object) => (
-                            <li>{types.type.name}</li>
+                            <PokemonType style={{backgroundColor: bgRelation[types.type.name]}}>{types.type.name}</PokemonType>
                         ))}
                     </ul>
                 </div>
