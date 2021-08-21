@@ -1,5 +1,6 @@
 import { getPokemonData, getPokemonLocation } from './api/pokemon'
 import Head from 'next/head'
+import Link from 'next/link'
 import {Section, PokemonImage, PokemonName, PokemonType, Locations, LocationList} from '../styles/styles'
 
 function pokemonPage({ pokemonData, pokemonLocation }) {
@@ -32,6 +33,8 @@ function pokemonPage({ pokemonData, pokemonLocation }) {
         <Head>
             <title>{pokemonData.name}</title>
         </Head>
+
+        <Link href="/"><a>Back to Home</a></Link>
 
             <Section>
                 <PokemonImage src={pokemonData.sprites.other.dream_world.front_default}/>
