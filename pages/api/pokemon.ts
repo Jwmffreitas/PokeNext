@@ -5,17 +5,18 @@ export async function getData() {
   return res.json()
 }
 
-export async function getPokemonData(name: string) {
-  const req = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  let res = await req
-
-  //if(!data || data == undefined || data == null) return {notFound: true}
-  // Combine the data with the id
+export async function getPokemonData(id: number) {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 
   return res.json()
 }
 
 export async function getPokemonLocation(id: number) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`)
+  return res.json()
+}
+
+export async function getGenerationData(id: number) {
+  const res = await fetch(`https://pokeapi.co/api/v2/generation/${id}`)
   return res.json()
 }

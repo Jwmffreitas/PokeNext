@@ -8,14 +8,14 @@ import Image from 'next/image';
 import { getData } from './api/pokemon'
 import Navbar from './components/Navbar';
 
-export async function getStaticProps() {
-  const pokemonData = await getData()
-  return {
-    props: {
-      pokemonData
-    }
-  }
-}
+//export async function getStaticProps() {
+//  const pokemonData = await getData()
+//  return {
+//    props: {
+//      pokemonData
+//    }
+//  }
+//}
 
 const Section = styled.section`
   display: flex;
@@ -40,7 +40,17 @@ const GenerationCard = styled.div`
 `
 
 
-export default function Home(pokemonData: object) {
+export default function Home() {
+
+  const generation = [
+    {id: 1, image: '/1-Generation.jpeg', text: '1ª Geração - 1996'},
+    {id: 2, image: '/2-Generation.jpeg', text: '2ª Geração - 1999'},
+    {id: 3, image: '/3-Generation.jpeg', text: '3ª Geração - 2002'},
+    {id: 4, image: '/4-Generation.jpeg', text: '4ª Geração - 2006'},
+    {id: 5, image: '/5-Generation.jpeg', text: '5ª Geração - 2010'},
+    {id: 6, image: '/6-Generation.jpeg', text: '6ª Geração - 2013'},
+    {id: 7, image: '/7-Generation.jpeg', text: '7ª Geração - 2017'},
+  ]
 
   //const pokemonList = pokemonData.pokemonData.results
 
@@ -55,76 +65,23 @@ export default function Home(pokemonData: object) {
       <Navbar/>
 
       <Section>
-        <GenerationCard>
-          <Image
-            priority
-            src="/1-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'First Generation'}
-            />
-            <h2>1ª Geração - 1996</h2>
-        </GenerationCard>
-        <GenerationCard>
-          <Image
-            priority
-            src="/2-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'Second Generation'}
-            />
-            <h2>2ª Geração - 1999</h2>
-        </GenerationCard>
-        <GenerationCard>
-          <Image
-            priority
-            src="/3-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'Third Generation'}
-            />
-            <h2>3ª Geração - 2002</h2>
-        </GenerationCard>
-        <GenerationCard>
-          <Image
-            priority
-            src="/4-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'Fourth Generation'}
-            />
-            <h2>4ª Geração - 2006</h2>
-        </GenerationCard>
-        <GenerationCard>
-          <Image
-            priority
-            src="/5-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'Fifth Generation'}
-            />
-            <h2>5ª Geração - 2010</h2>
-        </GenerationCard>
-        <GenerationCard>
-          <Image
-            priority
-            src="/6-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'Sixth Generation'}
-            />
-            <h2>6ª Geração - 2013</h2>
-        </GenerationCard>
-        <GenerationCard>
-          <Image
-            priority
-            src="/7-Generation.jpeg"
-            width={380}
-            height={200}
-            alt={'Seventh Generation'}
-            />
-            <h2>7ª Geração - 2017</h2>
-        </GenerationCard>
+
+        {generation.map((generation) => (
+        <Link href={`/generation/${generation.id}`}>
+        <a>
+          <GenerationCard>
+            <Image
+              priority
+              src={generation.image}
+              width={380}
+              height={200}
+              alt={generation.text}
+              />
+              <h2>{generation.text}</h2>
+          </GenerationCard>
+        </a>
+      </Link>
+        ))}
       </Section>
             {/*<List>
               {pokemonList.map((pokemon: any) => (
