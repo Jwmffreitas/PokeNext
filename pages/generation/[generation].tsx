@@ -5,6 +5,7 @@ import Image from 'next/image'
 import {PokemonCard, PokemonImage, PokemonName, PokemonType, Locations, LocationList} from '../../styles/styles'
 import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
+import { generation } from '../util/generation'
 
 function GenerationPage({ generationData }: any) {
     console.log(generationData)
@@ -14,7 +15,7 @@ function GenerationPage({ generationData }: any) {
 
     const getPokemons = async () => {
         let promises = [];
-        for (let i = 1; i <= generationData.pokemon_species.length; i++) {
+        for (let i = generation[generationData.id - 1].index; i < (generation[generationData.id - 1].index + generationData.pokemon_species.length); i++) {
             let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
             let result = await res.json()
             promises.push(result)
@@ -58,7 +59,7 @@ function GenerationPage({ generationData }: any) {
     return (
         <>
         <Head>
-            <title>{generationData.name}</title>
+            <title>{generationData.names[3].name}</title>
         </Head>
 
         <Navbar/>

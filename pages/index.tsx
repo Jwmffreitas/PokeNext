@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image';
+import { generation } from './util/generation';
 
 
 import { getData } from './api/pokemon'
@@ -41,16 +42,6 @@ const GenerationCard = styled.div`
 
 
 export default function Home() {
-
-  const generation = [
-    {id: 1, image: '/1-Generation.jpeg', text: '1ª Geração - 1996'},
-    {id: 2, image: '/2-Generation.jpeg', text: '2ª Geração - 1999'},
-    {id: 3, image: '/3-Generation.jpeg', text: '3ª Geração - 2002'},
-    {id: 4, image: '/4-Generation.jpeg', text: '4ª Geração - 2006'},
-    {id: 5, image: '/5-Generation.jpeg', text: '5ª Geração - 2010'},
-    {id: 6, image: '/6-Generation.jpeg', text: '6ª Geração - 2013'},
-    {id: 7, image: '/7-Generation.jpeg', text: '7ª Geração - 2017'},
-  ]
 
   //const pokemonList = pokemonData.pokemonData.results
 

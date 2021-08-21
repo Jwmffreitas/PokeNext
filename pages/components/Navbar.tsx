@@ -25,7 +25,6 @@ input {
 button {
     border: none;
     background-color: #CBCBCB;
-    font-size: 19px;
     height: 34px;
     width: 35px;
     border-bottom-right-radius: 5px;
@@ -50,9 +49,9 @@ export default function Navbar() {
                 </a>
             </Link>
             </div>
-            <div style={{marginTop: '4px'}}>
+            <div style={{marginTop: '4px', display: 'flex', alignItems: 'center'}}>
                 <input type="text" name="" id="" placeholder="Pesquisar" />
-                <button><FontAwesomeIcon icon={faSearch} color={'#8BC34A'}/></button>
+                <button><FontAwesomeIcon icon={faSearch} style={{height: '20px'}} /></button>
             </div>
         </Header>
     )
