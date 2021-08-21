@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Header = styled.header`
 background-color: red;
@@ -35,13 +36,17 @@ export default function Navbar() {
     return (
         <Header>
             <div>
-                <Image
-                priority
-                src="/favicon.png"
-                height={100}
-                width={100}
-                alt={'logo'}
-                />
+            <Link href="/">
+                <a>
+                    <Image
+                    priority
+                    src="/favicon.png"
+                    height={100}
+                    width={100}
+                    alt={'logo'}
+                    />
+                </a>
+            </Link>
             </div>
             <div style={{marginTop: '4px'}}>
                 <input type="text" name="" id="" placeholder="Pesquisar" />

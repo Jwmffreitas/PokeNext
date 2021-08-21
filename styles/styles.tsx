@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Section = styled.section`
+export const PokemonCard = styled.div`
 max-width: 40rem;
 padding: 0 1rem;
 margin: 3rem auto 3rem;
@@ -37,13 +37,15 @@ transition: 300ms;
 `
 
 export const PokemonImage = styled.img`
-height: 280px
+max-height: 150px;
+max-width: 150px;
+margin-right: 20px;
 `
 
 export const PokemonName = styled.h1`
 text-transform: uppercase;
 font-weight: bold;
-font-size: 1.8rem;
+font-size: 1.5rem;
 color: black;
 `
 

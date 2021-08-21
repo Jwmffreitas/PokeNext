@@ -1,7 +1,8 @@
 import { getGenerationData, getPokemonData, getPokemonLocation } from '../api/pokemon'
 import Head from 'next/head'
 import Link from 'next/link'
-import {Section, PokemonImage, PokemonName, PokemonType, Locations, LocationList} from '../../styles/styles'
+import Image from 'next/image'
+import {PokemonCard, PokemonImage, PokemonName, PokemonType, Locations, LocationList} from '../../styles/styles'
 import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
 
@@ -62,13 +63,27 @@ function GenerationPage({ generationData }: any) {
 
         <Navbar/>
 
-        <Link href="/"><a>Back to Home</a></Link>
+        <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+            <div style={{display: 'flex', flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px'}}>
+                {pokemons.map((pokemon) => (
+                    <PokemonCard>
+                            <PokemonImage src={pokemon.sprites.other.dream_world.front_default}/>
+                            <div>
+                                <PokemonName>{pokemon.name}</PokemonName>
+                                <p>Types:</p>
+                                <ul>
+                                    {pokemon.types.map((types: object) => (
+                                        <PokemonType style={{backgroundColor: bgRelation[types.type.name]}}>{types.type.name}</PokemonType>
+                                    ))}
+                                </ul>
+                            </div>
+                    </PokemonCard>
+                ))}
+            </div>
 
-            <Section>
-            </Section>
-            {pokemons.map((pokemon) => (
-                <p>{pokemon.name}</p>
-            ))}
+            <div style={{backgroundColor: '#F5F5F5', width: '40%'}}>
+            </div>
+        </section>
         </>
     )
 }
