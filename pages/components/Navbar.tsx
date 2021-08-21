@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Header = styled.header`
 background-color: red;
@@ -50,7 +52,7 @@ export default function Navbar() {
             </div>
             <div style={{marginTop: '4px'}}>
                 <input type="text" name="" id="" placeholder="Pesquisar" />
-                <button>E</button>
+                <button><FontAwesomeIcon icon={faSearch} color={'#8BC34A'}/></button>
             </div>
         </Header>
     )
