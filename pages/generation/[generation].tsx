@@ -11,6 +11,7 @@ function GenerationPage({ generationData }: any) {
     console.log(generationData)
 
     const [pokemons, setPokemons] = useState([])
+    const [loading, setLoading] = useState({loading: 'flex', content: 'none'})
 
 
     const getPokemons = async () => {
@@ -32,7 +33,9 @@ function GenerationPage({ generationData }: any) {
     }, [])
 
     useEffect(() => {
-        console.log(pokemons)
+        if(pokemons.length != 0) {
+            setLoading({loading: 'none', content: 'flex'})
+        }
     }, [pokemons])
 
     const bgRelation = {
@@ -64,11 +67,16 @@ function GenerationPage({ generationData }: any) {
 
         <Navbar/>
 
+        <div style={{width:'100%', display: loading.loading, alignItems: 'center', flexDirection: 'column', marginTop: '150px'}}>
+            <Image src={'/pikachu-loading.gif'} width={200} height={200}/>
+            <h3>Loading...</h3>
+        </div>
+
         <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-            <div style={{display: 'flex', flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px'}}>
+            <div style={{display: loading.content, flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px'}}>
                 {pokemons.map((pokemon) => (
                     <PokemonCard>
-                            <PokemonImage src={pokemon.sprites.other.dream_world.front_default}/>
+                            <PokemonImage src={pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other["official-artwork"].front_default}/>
                             <div>
                                 <PokemonName>{pokemon.name}</PokemonName>
                                 <p>Types:</p>
