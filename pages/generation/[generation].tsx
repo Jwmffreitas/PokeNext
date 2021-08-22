@@ -2,10 +2,12 @@ import { getGenerationData, getPokemonData, getPokemonLocation } from '../api/po
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import {PokemonCard, PokemonImage, PokemonName, PokemonType, PokemonSelected, Locations, LocationList} from '../../styles/styles'
+import {PokemonCard, PokemonImage, PokemonName, PokemonType, PokemonSelected, Search, Locations, LocationList} from '../../styles/styles'
 import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
 import { generation } from '../util/generation'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function GenerationPage({ generationData }: any) {
     console.log(generationData)
@@ -84,6 +86,10 @@ function GenerationPage({ generationData }: any) {
 
         <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
             <div style={{display: loading.content, flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px'}}>
+                <Search>
+                    <input type="text" name="" id="" placeholder="Search" />
+                    <button><FontAwesomeIcon icon={faSearch} style={{height: '20px'}} /></button>
+                </Search>
                 {pokemons.map((pokemon) => (
                     <PokemonCard onClick={() => selectPokemon(pokemon)}>
                             <PokemonImage src={pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other["official-artwork"].front_default}/>
@@ -115,12 +121,12 @@ function GenerationPage({ generationData }: any) {
                                     </div>
                         </PokemonSelected>
                         <div>
-                            <h1>STATUS</h1>
+                            <h1>STATS</h1>
                             {selected?.stats?.map((stats) => (
                                 <div>
                                     <h4 style={{margin: '0', fontWeight: '500'}}>{stats.stat.name}</h4>
                                     <div style={{backgroundColor: '#CBCBCB', width: '100%', height: '10px', borderRadius: '10px', margin: '5px 0px'}}>
-                                        <div style={{backgroundColor: '#414141', width: `${stats.base_stat >= 100 ? 100 : stats.base_stat}%`, height: '100%', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}></div>
+                                        <div style={{backgroundColor: '#414141', width: `${stats.base_stat >= 100 ? 100 : stats.base_stat}%`, height: '100%', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px', borderTopRightRadius: stats.base_stat >= 100 ? '10px' : '0px', borderBottomRightRadius: stats.base_stat >= 100 ? '10px' : '0px'}}></div>
                                     </div>
                                 </div>
                             ))}

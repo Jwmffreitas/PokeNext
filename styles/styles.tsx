@@ -1,5 +1,34 @@
 import styled from 'styled-components'
 
+export const Search = styled.div`
+margin-top: 4px;
+display: flex;
+align-items: center;
+width: 100%;
+justify-content: center;
+
+input {
+  border: solid 1px #CBCBCB;
+  font-size: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 5px 10px;
+  min-width: 400px;
+}
+
+button {
+  border: none;
+  color: #414141;
+  background-color: #CBCBCB;
+  height: 35px;
+  width: 40px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+`
+
 export const PokemonCard = styled.div`
 max-width: 40rem;
 padding: 0 1rem;
