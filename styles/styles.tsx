@@ -5,36 +5,18 @@ max-width: 40rem;
 padding: 0 1rem;
 margin: 3rem auto 3rem;
 display: flex;
-justify-content: space-evenly;`
-
-export const Title = styled.h1`
-font-size: 3rem;
-line-height: 1.4;
-margin: 1rem 0;
-font-family: "Rubik", sans-serif;
-text-align: center;
-`
-
-export const List = styled.ol`
-display: flex;
 justify-content: space-evenly;
-flex-wrap: wrap;
-list-style: none;
-padding: 0;
-`
+align-items: center;
+transition: 500ms;
+cursor: pointer;
+border: 0px solid red;
+flex: 0.4;
 
-export const ListItem = styled.li`
-background-color: white;
-padding: 5px;
-border-radius: 10px;
-margin: 10px;
-width: 211px;
-text-align: center;
-transition: 300ms;
 &:hover {
-  box-shadow: gray 0px 3px 5px;
+  transform: scale(1.08)
 }
 `
+
 
 export const PokemonImage = styled.img`
 max-height: 150px;
@@ -57,6 +39,22 @@ padding: 3px;
 margin: 5px;
 text-align: center;
 list-style: none;
+`
+
+export const PokemonSelected = styled.div`
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+img {
+  max-height: 200px;
+  max-width: 100%;
+}
+
+ul {
+  padding: 0;
+}
 `
 
 export const Locations = styled.h2`

@@ -2,7 +2,7 @@ import { getGenerationData, getPokemonData, getPokemonLocation } from '../api/po
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import {PokemonCard, PokemonImage, PokemonName, PokemonType, Locations, LocationList} from '../../styles/styles'
+import {PokemonCard, PokemonImage, PokemonName, PokemonType, PokemonSelected, Locations, LocationList} from '../../styles/styles'
 import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
 import { generation } from '../util/generation'
@@ -11,7 +11,8 @@ function GenerationPage({ generationData }: any) {
     console.log(generationData)
 
     const [pokemons, setPokemons] = useState([])
-    const [loading, setLoading] = useState({loading: 'flex', content: 'none'})
+    const [loading, setLoading] = useState({loading: 'flex', content: 'none', selected: 'none'})
+    const [selected, setSelected] = useState({})
 
 
     const getPokemons = async () => {
@@ -28,13 +29,22 @@ function GenerationPage({ generationData }: any) {
         getPokemons()
     }
 
+    let selectPokemon = (pokemon) => {
+        setSelected(pokemon);
+    }
+
+    useEffect(() => {
+        console.log(selected)
+    }, [selected])
+
     useEffect(() => {
         initialize()
     }, [])
 
     useEffect(() => {
         if(pokemons.length != 0) {
-            setLoading({loading: 'none', content: 'flex'})
+            setLoading({loading: 'none', content: 'flex', selected: 'block'})
+            setSelected(pokemons[0])
         }
     }, [pokemons])
 
@@ -75,7 +85,7 @@ function GenerationPage({ generationData }: any) {
         <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
             <div style={{display: loading.content, flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px'}}>
                 {pokemons.map((pokemon) => (
-                    <PokemonCard>
+                    <PokemonCard onClick={() => selectPokemon(pokemon)}>
                             <PokemonImage src={pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other["official-artwork"].front_default}/>
                             <div>
                                 <PokemonName>{pokemon.name}</PokemonName>
@@ -90,7 +100,33 @@ function GenerationPage({ generationData }: any) {
                 ))}
             </div>
 
-            <div style={{backgroundColor: '#F5F5F5', width: '40%'}}>
+            <div style={{backgroundColor: '#E2E2E2', width: '40%'}}>
+                <div style={{padding: '50px', display: loading.selected}}>
+                    <div style={{backgroundColor: 'white', borderRadius: '10px', padding: '50px', boxShadow: 'gray 0px 5px 10px'}}>
+                        <PokemonSelected>
+                                    <img src={selected?.sprites?.other?.dream_world?.front_default ? selected?.sprites?.other?.dream_world?.front_default : selected?.sprites?.other["official-artwork"]?.front_default}/>
+                                    <div style={{width: '100%'}}>
+                                        <PokemonName>{selected.name}</PokemonName>
+                                        <ul>
+                                            {selected?.types?.map((types: object) => (
+                                                <PokemonType style={{backgroundColor: bgRelation[types.type.name]}}>{types.type.name}</PokemonType>
+                                            ))}
+                                        </ul>
+                                    </div>
+                        </PokemonSelected>
+                        <div>
+                            <h1>STATUS</h1>
+                            {selected?.stats?.map((stats) => (
+                                <div>
+                                    <h4 style={{margin: '0', fontWeight: '500'}}>{stats.stat.name}</h4>
+                                    <div style={{backgroundColor: '#CBCBCB', width: '100%', height: '10px', borderRadius: '10px', margin: '5px 0px'}}>
+                                        <div style={{backgroundColor: '#414141', width: `${stats.base_stat >= 100 ? 100 : stats.base_stat}%`, height: '100%', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px'}}></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         </>
