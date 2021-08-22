@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  <img alt="Pokedex" src="https://ik.imagekit.io/hwyksvj4iv/pokedex_N_WgWrJK0s.png" width="250px" />
+</h1>
 
-## Getting Started
+<!--<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/MatheusPires99/pokedex">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/MatheusPires99/pokedex">
+  <img alt="Stars" src="https://img.shields.io/github/stars/MatheusPires99/pokedex">
+  <img alt="Repository Size" src="https://img.shields.io/github/repo-size/MatheusPires99/pokedex">
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="#page_with_curl-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#hammer-iniciando-mobile">Tecnologias</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#books-requisitos">Requisitos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-começando">Começando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#thought_balloon-começando">Inspiração</a>
+</p>-->
 
+<!--<h1 align="center">
+  <img alt="Pokedex" src="https://imgur.com/gallery/RVcHdGB" width="250px" />
+</h1>-->
+
+## :page_with_curl: Sobre
+A PokeNext, como eu apelidei, é uma pequena aplicação que eu fiz para poder estudar os princípios do Next (como o SSR e etc...)
+
+Uma Pokedex é uma aplicação no qual o usuário pode visualizar uma listagem de Pokémons, buscar e ver os detalhes de um Pokémon específico. Para obter os dados dos Pokémons foi utilizada a [PokéAPI](https://pokeapi.co/).
+
+## :hammer: Tecnologias
+
+Este projeto foi desenvolvido com as seguintes tecnologias:
+
+- [NextJS](https://nextjs.org)
+- [React](https://pt-br.reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
+- [Fontawesome - Icons](https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react)
+- [VS Code](https://code.visualstudio.com/)
+
+## :books: Requisitos
+- Ter [**Git**](https://git-scm.com/) para clonar o projeto.
+- Ter [**Node.js**](https://nodejs.org/en/) instalado.
+
+## :gear: Iniciando App
 ```bash
-npm run dev
-# or
-yarn dev
+
+  # Iniciar a aplicação:
+  $ npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feito por João Vitor Freitas 👋🏻 [Toca aqui, maninho!](https://github.com/Jwmffreitas)
