@@ -15,6 +15,8 @@ function GenerationPage({ generationData }: any) {
     const [pokemons, setPokemons] = useState([])
     const [loading, setLoading] = useState({loading: 'flex', content: 'none', selected: 'none'})
     const [selected, setSelected] = useState({})
+    const [pokemonsFiltered, setPokemonsFiltereds] = useState([])
+    const [search, setSearch] = useState("")
 
 
     const getPokemons = async () => {
@@ -47,8 +49,25 @@ function GenerationPage({ generationData }: any) {
         if(pokemons.length != 0) {
             setLoading({loading: 'none', content: 'flex', selected: 'block'})
             setSelected(pokemons[0])
+            setPokemonsFiltereds(pokemons)
         }
     }, [pokemons])
+
+    useEffect(() => {
+        filterPokemons()
+    }, [search])
+
+    let filterPokemons = () => {
+        let listTemp = []
+        pokemons.forEach((pokemon) => {
+            if(search != "") {
+                if(String(pokemon.id).indexOf(search) >= 0 || pokemon.name.indexOf(search) >= 0) listTemp.push(pokemon)
+            }else {
+                listTemp.push(pokemon)
+            }
+        })
+        setPokemonsFiltereds(listTemp)
+    }
 
     const bgRelation = {
         grass: 'forestgreen',
@@ -85,12 +104,12 @@ function GenerationPage({ generationData }: any) {
         </div>
 
         <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-            <div style={{display: loading.content, flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px'}}>
+            <div style={{display: loading.content, flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px', alignItems: 'flex-start'}}>
                 <Search>
-                    <input type="text" name="" id="" placeholder="Search" />
+                    <input type="text" name="" id="" placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
                     <button><FontAwesomeIcon icon={faSearch} style={{height: '20px'}} /></button>
                 </Search>
-                {pokemons.map((pokemon) => (
+                {pokemonsFiltered.map((pokemon) => (
                     <PokemonCard onClick={() => selectPokemon(pokemon)}>
                             <PokemonImage src={pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other["official-artwork"].front_default}/>
                             <div>
