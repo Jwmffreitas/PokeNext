@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 
 export const Search = styled.div`
-margin-top: 4px;
+margin-top: 80px;
 display: flex;
 align-items: center;
 width: 100%;
 justify-content: center;
+
+@media (min-width: 1240px) {
+  margin-top: 4px;
+}
 
 input {
   border: solid 1px #CBCBCB;
@@ -13,7 +17,10 @@ input {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 5px 10px;
-  min-width: 400px;
+
+  @media (min-width: 600px) {
+    min-width: 400px;
+  }
 }
 
 button {
@@ -31,6 +38,7 @@ button {
 
 export const PokemonCard = styled.div`
 max-width: 40rem;
+min-width: 300px;
 padding: 0 1rem;
 margin: 3rem auto 3rem;
 display: flex;
@@ -41,8 +49,15 @@ cursor: pointer;
 border: 0px solid red;
 flex: 0.4;
 
-&:hover {
-  transform: scale(1.08)
+@media (min-width: 600px) {
+  margin: 3rem auto 3rem;
+  &:hover {
+    transform: scale(1.08)
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1240px) {
+  margin: 3rem 1rem 3rem;
 }
 `
 
@@ -97,4 +112,27 @@ export const LocationList = styled.ul`
 list-style: none;
 padding: 0px;
 color: white;
+` 
+
+export const RightSide = styled.div`
+background-color: #E2E2E2;
+width: 40%;
+display: none;
+
+@media (min-width: 1240px) {
+  display: block
+}
+`
+
+export const LeftSide = styled.div`
+flex-wrap: wrap;
+padding: 0px;
+align-items: flex-start;
+justify-content: center;
+
+@media (min-width: 1240px) {
+  width: 60%;
+  padding: 20px;
+  max-width: 1000px;
+}
 `

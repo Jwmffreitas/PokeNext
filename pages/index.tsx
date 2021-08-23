@@ -23,6 +23,11 @@ const Section = styled.section`
   justify-content: space-evenly;
   margin-top: 100px;
   flex-wrap: wrap;
+  padding: 10px;
+  
+  @media (min-width: 1240px) {
+    padding: 0px;
+  }
 `
 
 const GenerationCard = styled.div`

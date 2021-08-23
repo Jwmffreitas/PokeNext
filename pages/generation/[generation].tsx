@@ -2,7 +2,7 @@ import { getGenerationData, getPokemonData, getPokemonLocation } from '../api/po
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import {PokemonCard, PokemonImage, PokemonName, PokemonType, PokemonSelected, Search, Locations, LocationList} from '../../styles/styles'
+import {PokemonCard, RightSide, LeftSide, PokemonImage, PokemonName, PokemonType, PokemonSelected, Search, Locations, LocationList} from '../../styles/styles'
 import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
 import { generation } from '../util/generation'
@@ -104,7 +104,7 @@ function GenerationPage({ generationData }: any) {
         </div>
 
         <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-            <div style={{display: loading.content, flexWrap: 'wrap', maxWidth: '1000px', width: '60%', padding: '20px', alignItems: 'flex-start'}}>
+            <LeftSide style={{display: loading.content}}>
                 <Search>
                     <input type="text" name="" id="" placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
                     <button><FontAwesomeIcon icon={faSearch} style={{height: '20px'}} /></button>
@@ -123,9 +123,9 @@ function GenerationPage({ generationData }: any) {
                             </div>
                     </PokemonCard>
                 ))}
-            </div>
+            </LeftSide>
 
-            <div style={{backgroundColor: '#E2E2E2', width: '40%'}}>
+            <RightSide>
                 <div style={{padding: '50px', display: loading.selected}}>
                     <div style={{backgroundColor: 'white', borderRadius: '10px', padding: '50px', boxShadow: 'gray 0px 5px 10px'}}>
                         <PokemonSelected>
@@ -152,7 +152,7 @@ function GenerationPage({ generationData }: any) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </RightSide>
         </section>
         </>
     )
