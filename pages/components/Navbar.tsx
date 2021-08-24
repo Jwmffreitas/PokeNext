@@ -6,9 +6,12 @@ import Link from 'next/link';
 const Header = styled.header`
 background-color: red;
 width: 100%;
+position: fixed;
 padding: 10px 20px;;
 max-height: 60px;
 display: flex;
+z-index: 1;
+top: 0;
 justify-content: space-between;
 
 input {

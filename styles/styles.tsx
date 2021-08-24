@@ -122,6 +122,17 @@ display: none;
 @media (min-width: 1240px) {
   display: block
 }
+
+.pop {
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+  box-shadow: gray 0px 5px 10px;
+  height: 80%;
+  position: fixed;
+  width: 30%;
+  overflow-y: scroll;
+}
 `
 
 export const LeftSide = styled.div`

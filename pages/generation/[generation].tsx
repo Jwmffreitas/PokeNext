@@ -15,6 +15,7 @@ function GenerationPage({ generationData }: any) {
     const [pokemons, setPokemons] = useState([])
     const [loading, setLoading] = useState({loading: 'flex', content: 'none', selected: 'none'})
     const [selected, setSelected] = useState({})
+    const [location, setLocation] = useState([])
     const [pokemonsFiltered, setPokemonsFiltereds] = useState([])
     const [search, setSearch] = useState("")
 
@@ -29,17 +30,28 @@ function GenerationPage({ generationData }: any) {
         setPokemons(promises)
     }
 
+    const getLocation = async (url) => {
+        let res = await fetch(url)
+        let result = await res.json()
+        setLocation(result)
+    }
+
     let initialize = () => {
         getPokemons()
     }
 
     let selectPokemon = (pokemon) => {
-        setSelected(pokemon);
+        setSelected(pokemon)
     }
 
     useEffect(() => {
         console.log(selected)
+        getLocation(selected.location_area_encounters)
     }, [selected])
+
+    useEffect(() => {
+        console.log(location)
+    }, [location])
 
     useEffect(() => {
         initialize()
@@ -103,7 +115,7 @@ function GenerationPage({ generationData }: any) {
             <h3>Loading...</h3>
         </div>
 
-        <section style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+        <section style={{width: '100%', display: 'flex', justifyContent: 'space-between', paddingTop: '60px'}}>
             <LeftSide style={{display: loading.content}}>
                 <Search>
                     <input type="text" name="" id="" placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
@@ -127,7 +139,7 @@ function GenerationPage({ generationData }: any) {
 
             <RightSide>
                 <div style={{padding: '50px', display: loading.selected}}>
-                    <div style={{backgroundColor: 'white', borderRadius: '10px', padding: '50px', boxShadow: 'gray 0px 5px 10px'}}>
+                    <div className="pop">
                         <PokemonSelected>
                                     <img src={selected?.sprites?.other?.dream_world?.front_default ? selected?.sprites?.other?.dream_world?.front_default : selected?.sprites?.other["official-artwork"]?.front_default}/>
                                     <div style={{width: '100%'}}>
@@ -147,6 +159,27 @@ function GenerationPage({ generationData }: any) {
                                     <div style={{backgroundColor: '#CBCBCB', width: '100%', height: '10px', borderRadius: '10px', margin: '5px 0px'}}>
                                         <div style={{backgroundColor: '#414141', width: `${stats.base_stat >= 100 ? 100 : stats.base_stat}%`, height: '100%', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px', borderTopRightRadius: stats.base_stat >= 100 ? '10px' : '0px', borderBottomRightRadius: stats.base_stat >= 100 ? '10px' : '0px'}}></div>
                                     </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div style={{display: location.length <= 0 ? 'none' : 'block'}}>
+                            <h1>LOCATION TO ENCOUNTER</h1>
+                            {location?.map((location) => (
+                                <div>
+                                    <details style={{margin: '0', fontWeight: '500'}}>
+                                        <summary style={{textTransform: 'capitalize'}}>{location?.location_area?.name.replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('area', '')}</summary>
+                                        <ul>
+                                        {location?.version_details?.map((version) => (
+                                            <details>
+                                            <summary style={{color: 'gray'}}>version: <span style={{color: 'black', textTransform: 'capitalize'}}>{version.version.name}</span></summary>
+                                            <ul>
+                                                <li>method: {version?.encounter_details[0]?.method.name}</li>
+                                                <li>chance: {version?.encounter_details[0]?.chance}%</li>
+                                            </ul>
+                                            </details>
+                                        ))}
+                                        </ul>
+                                    </details>
                                 </div>
                             ))}
                         </div>

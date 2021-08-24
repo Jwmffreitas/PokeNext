@@ -24,9 +24,11 @@ const Section = styled.section`
   margin-top: 100px;
   flex-wrap: wrap;
   padding: 10px;
+  padding-top: 60px;
   
   @media (min-width: 1240px) {
     padding: 0px;
+    padding-top: 60px;
   }
 `
 
