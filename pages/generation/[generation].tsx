@@ -155,9 +155,12 @@ function GenerationPage({ generationData }: any) {
                             <h1>STATS</h1>
                             {selected?.stats?.map((stats) => (
                                 <div>
-                                    <h4 style={{margin: '0', fontWeight: '500'}}>{stats.stat.name}</h4>
-                                    <div style={{backgroundColor: '#CBCBCB', width: '100%', height: '10px', borderRadius: '10px', margin: '5px 0px'}}>
-                                        <div style={{backgroundColor: '#414141', width: `${stats.base_stat >= 100 ? 100 : stats.base_stat}%`, height: '100%', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px', borderTopRightRadius: stats.base_stat >= 100 ? '10px' : '0px', borderBottomRightRadius: stats.base_stat >= 100 ? '10px' : '0px'}}></div>
+                                    <h4 style={{margin: '0', fontWeight: 500}}>{stats.stat.name}</h4>
+                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                        <div style={{backgroundColor: '#CBCBCB', width: '85%', height: '10px', borderRadius: '10px', margin: '5px 0px'}}>
+                                            <div style={{backgroundColor: '#414141', width: `${stats.base_stat >= 100 ? 100 : stats.base_stat}%`, height: '100%', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px', borderTopRightRadius: stats.base_stat >= 100 ? '10px' : '0px', borderBottomRightRadius: stats.base_stat >= 100 ? '10px' : '0px'}}></div>
+                                        </div>
+                                        <div style={{padding: '5px 8px', backgroundColor: '#414141', borderRadius: '100px', color: 'white'}}>{stats.base_stat}</div>
                                     </div>
                                 </div>
                             ))}

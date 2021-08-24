@@ -17,16 +17,17 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  border-top-right-radius: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1; 
+  border-radius: 10px;
 }
  
 ::-webkit-scrollbar-thumb {
   background: #888; 
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
