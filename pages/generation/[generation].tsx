@@ -8,20 +8,22 @@ import { useEffect, useState } from 'react'
 import { generation } from '../util/generation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { IPokemon, ITypes } from '../interfaces/IPokemon'
+import { ILocation } from '../interfaces/ILocation'
 
 function GenerationPage({ generationData }: any) {
     console.log(generationData)
 
-    const [pokemons, setPokemons] = useState([])
+    const [pokemons, setPokemons] = useState([] as IPokemon[])
     const [loading, setLoading] = useState({loading: 'flex', content: 'none', selected: 'none'})
-    const [selected, setSelected] = useState({})
-    const [location, setLocation] = useState([])
-    const [pokemonsFiltered, setPokemonsFiltereds] = useState([])
+    const [selected, setSelected] = useState({} as IPokemon)
+    const [location, setLocation] = useState([] as ILocation[])
+    const [pokemonsFiltered, setPokemonsFiltereds] = useState([] as IPokemon[])
     const [search, setSearch] = useState("")
 
 
     const getPokemons = async () => {
-        let promises = [];
+        let promises: any[] = [];
         for (let i = generation[generationData.id - 1].index; i < (generation[generationData.id - 1].index + generationData.pokemon_species.length); i++) {
             let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
             let result = await res.json()
@@ -30,7 +32,7 @@ function GenerationPage({ generationData }: any) {
         setPokemons(promises)
     }
 
-    const getLocation = async (url) => {
+    const getLocation = async (url: string) => {
         let res = await fetch(url)
         let result = await res.json()
         setLocation(result)
@@ -40,12 +42,12 @@ function GenerationPage({ generationData }: any) {
         getPokemons()
     }
 
-    let selectPokemon = (pokemon) => {
+    let selectPokemon = (pokemon: IPokemon) => {
         setSelected(pokemon)
     }
 
     useEffect(() => {
-        console.log(selected)
+        //console.log(selected)
         getLocation(selected.location_area_encounters)
     }, [selected])
 
@@ -70,8 +72,8 @@ function GenerationPage({ generationData }: any) {
     }, [search])
 
     let filterPokemons = () => {
-        let listTemp = []
-        pokemons.forEach((pokemon) => {
+        let listTemp: any[] = []
+        pokemons.forEach((pokemon: IPokemon) => {
             if(search != "") {
                 if(String(pokemon.id).indexOf(search) >= 0 || pokemon.name.indexOf(search) >= 0) listTemp.push(pokemon)
             }else {
@@ -121,14 +123,14 @@ function GenerationPage({ generationData }: any) {
                     <input type="text" name="" id="" placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
                     <button><FontAwesomeIcon icon={faSearch} style={{height: '20px'}} /></button>
                 </Search>
-                {pokemonsFiltered.map((pokemon) => (
+                {pokemonsFiltered.map((pokemon: IPokemon) => (
                     <PokemonCard onClick={() => selectPokemon(pokemon)}>
                             <PokemonImage src={pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other["official-artwork"].front_default}/>
                             <div>
                                 <PokemonName>{pokemon.name}</PokemonName>
                                 <p>Types:</p>
                                 <ul>
-                                    {pokemon.types.map((types: object) => (
+                                    {pokemon.types.map((types: ITypes) => (
                                         <PokemonType style={{backgroundColor: bgRelation[types.type.name]}}>{types.type.name}</PokemonType>
                                     ))}
                                 </ul>
@@ -145,7 +147,7 @@ function GenerationPage({ generationData }: any) {
                                     <div style={{width: '100%'}}>
                                         <PokemonName>{selected.name}</PokemonName>
                                         <ul>
-                                            {selected?.types?.map((types: object) => (
+                                            {selected?.types?.map((types: ITypes) => (
                                                 <PokemonType style={{backgroundColor: bgRelation[types.type.name]}}>{types.type.name}</PokemonType>
                                             ))}
                                         </ul>
@@ -169,7 +171,7 @@ function GenerationPage({ generationData }: any) {
                             <h1>LOCATION TO ENCOUNTER</h1>
                             {location?.map((location) => (
                                 <div>
-                                    <details style={{margin: '0', fontWeight: '500'}}>
+                                    <details style={{margin: '0', fontWeight: 500}}>
                                         <summary style={{textTransform: 'capitalize'}}>{location?.location_area?.name.replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('-', ' ').replace('area', '')}</summary>
                                         <ul>
                                         {location?.version_details?.map((version) => (
