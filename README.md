@@ -27,6 +27,15 @@ A PokeNext, como eu apelidei, é uma pequena aplicação que eu fiz para poder e
 
 Uma Pokedex é uma aplicação no qual o usuário pode visualizar uma listagem de Pokémons, buscar e ver os detalhes de um Pokémon específico. Para obter os dados dos Pokémons foi utilizada a [PokéAPI](https://pokeapi.co/).
 
+## Algumas imagens da PokeNext rodando:
+
+<h1 align="center">
+  <img alt="Generation List" src="https://cdn.discordapp.com/attachments/903451639724273694/903451919333347379/unknown.png" width="800px" />
+</h1>
+<h1 align="center">
+  <img alt="Generation Lits 2" src="https://cdn.discordapp.com/attachments/903451639724273694/903452411883028480/unknown.png" width="800px" />
+</h1>
+
 ## :hammer: Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
